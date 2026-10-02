@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalshi — Video Review (shared Oct 1)</title>
+<style>
+  :root{ --bg:#0A0F0D; --panel:#0F1613; --line:#1E2A25; --mint:#00E08A; --ink:#EAF3EF; --dim:#8CA69B; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:radial-gradient(1000px 520px at 50% -12%,rgba(0,224,138,.10),transparent 60%),var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Inter,Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  header{padding:38px 22px 4px;text-align:center}
+  .brand{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--mint)}
+  h1{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:6px 0 4px}
+  .sub{color:var(--dim);font-size:13.5px}
+  .sect{max-width:1120px;margin:26px auto 0;padding:0 22px}
+  .sect h2{font-size:16px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:9px}
+  .sect h2 .n{font-size:11px;color:var(--dim);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px 9px;letter-spacing:0;text-transform:none}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px;margin:16px 0 8px;padding-bottom:10px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+  .vwrap{background:#000;aspect-ratio:9/16;position:relative}
+  .vwrap video,.vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000;object-fit:contain}
+  .cap{padding:11px 13px;font-size:13px;font-weight:700;line-height:1.3;word-break:break-word}
+  .cap small{display:block;color:var(--dim);font-weight:500;margin-top:3px}
+  .cap a{color:var(--mint);text-decoration:none;font-size:11.5px}
+  .note{max-width:1120px;margin:2px auto 0;padding:0 22px;color:var(--dim);font-size:11.5px}
+  footer{color:var(--dim);font-size:12px;text-align:center;padding:30px 20px 60px}
+</style></head>
+<body>
+<header>
+  <div class="brand">Kalshi</div>
+  <h1>Video Review — shared Oct 1</h1>
+  <p class="sub">NFL creator clips (local) + MLB creatives (Drive embeds) · tap play / scrub each</p>
+</header>
+
+<div class="sect"><h2>NFL <span class="n" id="nflc"></span></h2><div class="grid" id="nfl"></div></div>
+
+<div class="sect"><h2>MLB · Baseball <span class="n" id="mlbc"></span></h2></div>
+<p class="note"><b style="color:#CFE6DC">2 spots × 3 alternate cuts (A/B/C)</b> — Dara "MLB Champ Picks" and Brent "MLB Wild Cards". Embedded from Google Drive; if a player says "sign in", open in a browser signed into your Unity Google account (they're shared with you).</p>
+<div class="sect"><div class="grid" id="mlb"></div></div>
+
+<footer>Kalshi · Unity Ads · video review built Oct 2</footer>
+<script>
+/* NFL — local files served from this folder */
+var NFL=[
+ {f:"Smartest_Ways_Trade_Football_Brent.mp4", t:"Smartest Ways to Trade Football · Brent", s:"0:55"},
+ {f:"I trusted Dallas_01_C.mp4", t:"I Trusted Dallas · 01 C", s:"0:56"},
+ {f:"SmartestTrade_Kalshi HOOK2.mp4", t:"Smartest Trade · Hook 2", s:"0:40"},
+ {f:"Adam_NFL_State_Hook3_a.mp4", t:"Adam · NFL State · Hook 3a", s:"0:47"},
+ {f:"Nicholas_I_Changed_My_Mind_NFL_c.mp4", t:"Nicholas · I Changed My Mind · NFL c", s:"0:32"}
+];
+/* MLB — Google Drive file IDs (embed via /preview). A/B/C = alternate cuts of the SAME spot. */
+var MLB=[
+ {id:"1D3NExbWoUw985FWkgBQgDCkJMQZydeSw", t:"Dara — MLB Champ Picks", v:"Variant A · alt cut"},
+ {id:"1W4aaaLHHQvtxTlkqrez8yEATc0LyQHfn", t:"Dara — MLB Champ Picks", v:"Variant B · alt cut"},
+ {id:"1QC24l_ru_DbK9gEG12MqnE3mkF2D_mvB", t:"Dara — MLB Champ Picks", v:"Variant C · alt cut"},
+ {id:"1Ht1t59TgqhnC4n9QHTP91I9fQXKUDisS", t:"Brent — MLB Wild Cards", v:"Variant A · alt cut"},
+ {id:"1K8xy_k3wobNF_arNPgq9-s_hgwgGtMrk", t:"Brent — MLB Wild Cards", v:"Variant B · alt cut"},
+ {id:"1Mt1wjRFx0qpT7kyTqM2JTM_7ymwXVNRC", t:"Brent — MLB Wild Cards", v:"Variant C · alt cut"}
+];
+var nfl=document.getElementById("nfl");
+NFL.forEach(function(v){
+  var c=document.createElement("div");c.className="card";
+  c.innerHTML='<div class="vwrap"><video controls preload="metadata" playsinline src="vid/'+encodeURIComponent(v.f)+'"></video></div>'+
+    '<div class="cap">'+v.t+' · '+v.s+'<small>'+v.f+'</small></div>';
+  nfl.appendChild(c);
+});
+document.getElementById("nflc").textContent=NFL.length;
+var mlb=document.getElementById("mlb");
+MLB.forEach(function(v){
+  var c=document.createElement("div");c.className="card";
+  c.innerHTML='<div class="vwrap"><iframe src="https://drive.google.com/file/d/'+v.id+'/preview" allow="autoplay" allowfullscreen></iframe></div>'+
+    '<div class="cap">'+v.t+'<small>'+v.v+'</small></div>';
+  mlb.appendChild(c);
+});
+document.getElementById("mlbc").textContent=MLB.length;
+</script>
+</body></html>
